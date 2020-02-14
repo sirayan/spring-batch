@@ -11,6 +11,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Executed inside JobExecution inside StepExecution, called the ItemWriter
+ * 
+ * @author Ryan R.
+ */
+
 @Component
 @Slf4j
 public class DatabaseWriter implements ItemWriter<Telco> {

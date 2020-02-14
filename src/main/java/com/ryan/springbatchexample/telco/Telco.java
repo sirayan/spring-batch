@@ -10,6 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Creates a telco
+ * 
+ * @author Ryan R.
+ * 
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

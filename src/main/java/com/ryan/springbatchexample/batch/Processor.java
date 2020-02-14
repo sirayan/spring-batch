@@ -11,6 +11,13 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Executed inside JobExecution inside the StepExecution, called the
+ * ItemProcesor
+ * 
+ * @author Ryan R.
+ */
+
 @Component
 @Slf4j
 public class Processor implements ItemProcessor<Telco, Telco> {

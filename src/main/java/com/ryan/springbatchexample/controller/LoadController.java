@@ -22,6 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Controller
+ * 
+ * @author Ryan R.
+ * 
+ */
+
 @Controller
 @RequestMapping("/load")
 @Slf4j
@@ -33,6 +40,14 @@ public class LoadController {
     @Autowired
     Job job;
 
+    /**
+     * 
+     * @return the batch status of the launched job
+     * @throws JobExecutionAlreadyRunningException
+     * @throws JobRestartException
+     * @throws JobInstanceAlreadyCompleteException
+     * @throws JobParametersInvalidException
+     */
     @GetMapping
     public ResponseEntity<BatchStatus> load() throws JobExecutionAlreadyRunningException, JobRestartException,
             JobInstanceAlreadyCompleteException, JobParametersInvalidException {
@@ -51,14 +66,17 @@ public class LoadController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        log.info("JobExecution: " + jobExecution.getStatus());
-
         log.info("Loading batch...");
+
         while (jobExecution.isRunning()) {
             log.info("...");
         }
+        log.info("JobExecution: " + jobExecution.getStatus());
 
         return ResponseEntity.ok(jobExecution.getStatus());
     }
+
+    /**
+     * Once all the steps are completed, status is now back into the JobRepository
+     */
 }

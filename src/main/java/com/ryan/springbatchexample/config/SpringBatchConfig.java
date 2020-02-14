@@ -23,11 +23,27 @@ import org.springframework.core.io.Resource;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Spring Batch configuration
+ * 
+ * @author Ryan R.
+ */
+
 @Configuration
 @EnableBatchProcessing
 @Slf4j
 public class SpringBatchConfig {
 
+    /**
+     * The StepExecution
+     * 
+     * @param jobBuilderFactory
+     * @param setBuilderFactory
+     * @param telcoItemReader
+     * @param telcoItemProcessor
+     * @param telcoItemWriter
+     * @return the job
+     */
     @Bean
     public Job job(JobBuilderFactory jobBuilderFactory, StepBuilderFactory setBuilderFactory,
             ItemReader<Telco> telcoItemReader, ItemProcessor<Telco, Telco> telcoItemProcessor,
@@ -39,6 +55,13 @@ public class SpringBatchConfig {
         return jobBuilderFactory.get("TELCO-Load").incrementer(new RunIdIncrementer()).start(step).build();
     }
 
+    /**
+     * Executed inside JobExecution inside StepExecution, called the ItemReader
+     * Note: steps could be at least one or more
+     * 
+     * @param resource
+     * @return the FlatFileItemReader
+     */
     @Bean
     public FlatFileItemReader<Telco> telcoItemReader(@Value("${input}") Resource resource) {
 
@@ -46,7 +69,7 @@ public class SpringBatchConfig {
         log.info("Setting resources...");
         flatFileItemReader.setResource(resource);
         flatFileItemReader.setName("CSV-Reader");
-        flatFileItemReader.setLinesToSkip(1);
+        flatFileItemReader.setLinesToSkip(2);
         flatFileItemReader.setLineMapper(lineMapper());
         // log.info("CONTENT: ");
         flatFileItemReader.setStrict(false);

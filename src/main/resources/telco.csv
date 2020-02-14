@@ -1,9 +1,10 @@
+this is just a sample data (lines 1 and 2 are skipped from SpringBatchConfig telcoItemReader method configuration)
 id,mobile_prefix,telco,plan_type
-1,9259999,1,PREPAID
-2,9259999,2,PREPAID
-3,90599,3,PREPAID
-4,996,4,PREPAID
-5,896,5,PLN_REINN2
+1,9259999,01,PREPAID
+2,9259999,02,PREPAID
+3,90599,03,PREPAID
+4,996,04,PREPAID
+5,896,05,PLN_REINN2
 6,-4610664.9,6,PREPAID
 7,-7388385.8,7,PREPAID
 8,-10166106.7,8,PREPAID
