@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: telco
+  output:
+    ansi:
+      enabled: always
+  batch:
+    job:
+      enabled: false
+
+server:
+  port: 8081
+
+input: file:src\main\resources\telco.csv
